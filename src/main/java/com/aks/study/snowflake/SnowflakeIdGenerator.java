@@ -5,7 +5,7 @@ package com.aks.study.snowflake;
  */
 public class SnowflakeIdGenerator {
 
-    // Snowflake 알고리즘에서 사용되는 시작 시간(epoch). 2021-01-01 00:00:00을 기준으로 함
+    // Snowflake 알고리즘에서 사용되는 시작 시간(epoch). 2010년 11월 4일 01:42:54 기준으로 함
     // 원하는 값으로 변경하여 사용
     private final long twepoch = 1288834974657L;
 
