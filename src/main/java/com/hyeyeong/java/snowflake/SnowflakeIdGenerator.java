@@ -1,4 +1,4 @@
-package com.aks.study.snowflake;
+package com.hyeyeong.java.snowflake;
 
 /**
  * 트위터 Snowflake 공식 Git 주소: https://github.com/twitter-archive/snowflake/pull/27/files

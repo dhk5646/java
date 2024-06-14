@@ -1,8 +1,7 @@
-package com.aks.study.file.uilts;
+package com.hyeyeong.java.zip;
 
-import com.aks.study.file.uilts.dto.ZipDto;
+import com.hyeyeong.java.zip.dto.ZipDto;
 import lombok.experimental.UtilityClass;
-import lombok.extern.slf4j.Slf4j;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -10,15 +9,17 @@ import java.nio.file.Path;
 import java.util.Comparator;
 import java.util.List;
 import java.util.UUID;
+import java.util.logging.Logger;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
 /**
  * 파일 압축 클래스
  * */
-@Slf4j
 @UtilityClass
 public class ZipUtils {
+
+    private static final Logger logger = Logger.getLogger(ZipUtils.class.getName());
 
     private static final int BUFFER_SIZE = 8192; // 8KB
     private static final String COMPRESSION_TEMP_DIRECTORY = "compression-";
@@ -45,7 +46,7 @@ public class ZipUtils {
             return Files.newInputStream(zipFilePath);
 
         } finally {
-            log.info("compression file path:" + zipFilePath);
+            logger.info("compression file path:" + zipFilePath);
             deleteTempFiles(zipFilePath);
         }
     }
@@ -58,20 +59,20 @@ public class ZipUtils {
 
     private static void addToZipFile(ZipOutputStream zos, ZipDto file) throws IOException {
 
-        ZipEntry zipEntry = new ZipEntry(file.getFileName());
+        ZipEntry zipEntry = new ZipEntry(file.fileName());
         zos.putNextEntry(zipEntry);
 
         try {
             byte[] buffer = new byte[BUFFER_SIZE];
             int bytesRead;
-            while ((bytesRead = file.getInputStream().read(buffer)) != -1) {
+            while ((bytesRead = file.inputStream().read(buffer)) != -1) {
                 zos.write(buffer, 0, bytesRead);
             }
         } catch (IOException e) {
-            throw new IOException("Error reading file: " + file.getFileName(), e);
+            throw new IOException("Error reading file: " + file.fileName(), e);
         } finally {
-            if(file.getInputStream() != null) {
-                file.getInputStream().close();
+            if(file.inputStream() != null) {
+                file.inputStream().close();
             }
             zos.closeEntry();
         }

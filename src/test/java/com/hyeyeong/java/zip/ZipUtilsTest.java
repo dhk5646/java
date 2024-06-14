@@ -1,11 +1,10 @@
-package com.aks.study.file.uilts;
+package com.hyeyeong.java.zip;
 
-import com.aks.study.file.uilts.dto.ZipDto;
+import com.hyeyeong.java.zip.dto.ZipDto;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.springframework.core.io.ClassPathResource;
 
 import java.io.File;
 import java.io.IOException;
@@ -46,8 +45,8 @@ public class ZipUtilsTest {
     @SneakyThrows
     private ZipDto createZipDto(String fileName) {
         try {
-            String filePath = "com/aks/study/file/uilts" + File.separator + fileName;
-            InputStream inputStream =  new ClassPathResource(filePath).getInputStream();
+            String filePath = "com/hyeyeong/java/zip/util" + File.separator + fileName;
+            InputStream inputStream =  ZipUtilsTest.class.getClassLoader().getResourceAsStream(filePath);
 
             return ZipDto.create(fileName, inputStream);
         } catch (Exception e) {

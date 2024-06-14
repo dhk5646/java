@@ -1,6 +1,5 @@
-package com.aks.study.snowflake;
+package com.hyeyeong.java.snowflake;
 
-import lombok.extern.slf4j.Slf4j;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -8,7 +7,6 @@ import org.junit.jupiter.api.Test;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 
-@Slf4j
 public class SnowflakeIdGeneratorTest {
 
     @Test
